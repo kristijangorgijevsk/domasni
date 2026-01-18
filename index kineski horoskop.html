@@ -1,0 +1,45 @@
+    <!DOCTYPE html>
+<html>
+<head>
+  <title>Chinese Zodiac Calculator</title>
+</head>
+<body>
+
+  <h2>Chinese Zodiac Calculator</h2>
+
+  <input type="number" id="yearInput" placeholder="Enter a year">
+  <button onclick="calculateZodiac()">Check Zodiac</button>
+
+  <p id="result"></p>
+
+  <script>
+        function calculateZodiac() {
+      const year = parseInt(document.getElementById("yearInput").value);
+
+      const zodiacs = [
+        "Rat", "Ox", "Tiger", "Rabbit",
+        "Dragon", "Snake", "Horse", "Goat",
+        "Monkey", "Rooster", "Dog", "Pig"
+      ];
+
+      if (isNaN(year)) {
+        document.getElementById("result").innerText = "Please enter a valid year.";
+        return;
+      }
+
+      const index = (year - 4) % 12;
+      const zodiac = zodiacs[index];
+
+      document.getElementById("result").innerText =
+        year + " is the Year of the " + zodiac;
+    }
+  
+  </script>
+
+</body>
+</html>
+
+
+    <script src="javascript"></script>
+</body>
+</html>
