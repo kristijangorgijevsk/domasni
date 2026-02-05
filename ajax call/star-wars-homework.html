@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star Wars API Example</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="loadPersonBtn">Load First Star Wars Person</button>
+
+  <h1 id="personName"></h1>
+
+  <table>
+    <tbody id="personTable"></tbody>
+  </table>
+
+  <script>
+    const apiUrl = "https://swapi.py4e.com/api/people/1/";
+
+    const button = document.getElementById("loadPersonBtn");
+    const nameHeading = document.getElementById("personName");
+    const tableBody = document.getElementById("personTable");
+
+    button.addEventListener("click", () => {
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(person => {
+          nameHeading.textContent = person.name;
+          tableBody.innerHTML = "";
+
+          const stats = [
+            ["Height", person.height],
+            ["Weight", person.mass],
+            ["Eye color", person.eye_color],
+            ["Hair color", person.hair_color]
+          ];
+
+          for (let stat of stats) {
+            tableBody.innerHTML += `
+              <tr>
+                <td>${stat[0]}</td>
+                <td>${stat[1]}</td>
+              </tr>
+            `;
+          }
+        })
+        .catch(error => console.log(error));
+    });
+  </script>
+
+</body>
+</html>
